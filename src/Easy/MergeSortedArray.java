@@ -1,0 +1,9 @@
+package Easy;
+
+public class MergeSortedArray {
+	
+	public static void main (String args[]){
+		System.out.println("wtf???");
+	}
+	
+}
