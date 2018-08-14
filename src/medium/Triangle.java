@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Triangle {
-    public static int minimumTotal(List<List<Integer>> triangle) {
+    private static int minimumTotal(List<List<Integer>> triangle) {
         if(triangle == null || triangle.size() == 0)
         	return 0;
         
@@ -24,10 +24,6 @@ public class Triangle {
         return results[0][0];
     }
     
-    public static void main(String[] args){
-    	List<List<Integer>> test = new LinkedList<>();
-    	
-    }
 }
 
 
