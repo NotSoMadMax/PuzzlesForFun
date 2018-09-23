@@ -1,6 +1,12 @@
 package medium;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 class LongestIncreasingSubsequence {
+
+    // dp, n square solution
     private int lengthOfLIS(int[] nums) {
         if (nums == null || nums.length < 1)
             return 0;
@@ -22,5 +28,36 @@ class LongestIncreasingSubsequence {
         }
 
         return result;
+    }
+
+
+    // nlogn solution
+    private int sol2(int[] nums){
+        if (nums == null || nums.length < 1)
+            return 0;
+
+        int len = nums.length;
+        List<Integer> seq = new ArrayList<>();
+        seq.add(nums[0]);
+
+        for(int i = 1; i < len; i++){
+            if(nums[i] < seq.get(0))
+                seq.set(0, nums[i]);
+            else if (nums[i] > seq.get(seq.size() - 1))
+                seq.add(nums[i]);
+            else{       // find the first in seq that is larger than nums[i]
+                int left = 0, right = seq.size() - 1, mid = 0;
+                while(left < right){
+                    mid = left + (right - left)/2;
+                    if(seq.get(mid) < nums[i])
+                        left = mid + 1;
+                    else
+                        right = mid;
+                }
+                seq.set(right, nums[i]);
+            }
+        }
+
+        return seq.size();
     }
 }
