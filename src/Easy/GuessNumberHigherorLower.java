@@ -16,7 +16,7 @@ class GuessNumberHigherorLower {
         int cur = low + (high - low)/2;
         int result;
         for(;;){
-            result = guess(cur);
+            result = guessNumber(cur);
 
             if(result == 0)
                 break;

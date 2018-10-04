@@ -17,7 +17,7 @@ public class RemoveDuplicatesfromSortedListII {
                 cur = cur.next;
 
             if (pre.next == cur){
-                pre = pre.next
+                pre = pre.next;
             } else {
                 pre.next = cur.next;
             }

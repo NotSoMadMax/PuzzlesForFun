@@ -3,7 +3,7 @@ package Easy;
 class RangeSumQuery {
 
     private int[] dp;
-    public NumArray(int[] nums) {
+    public void NumArray(int[] nums) {
         if(nums == null || nums.length < 1)
             return;
 

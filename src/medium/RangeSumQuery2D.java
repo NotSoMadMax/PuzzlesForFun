@@ -4,7 +4,7 @@ class RangeSumQuery2D {
 
 
     int[][] dp;
-    public NumMatrix(int[][] matrix) {
+    public void NumMatrix(int[][] matrix) {
         if(matrix == null || matrix.length < 1 || matrix[0].length < 1)
             return;
 

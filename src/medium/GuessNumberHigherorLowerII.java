@@ -1,20 +1,18 @@
 package medium;
 
 class GuessNumberHigherorLowerII {
-    public int getMoneyAmount(int n) {
+    private static int getMoneyAmount(int n) {
         if(n < 1)
             return 0;
 
         int[][] dp = new int[n+1][n+1]; // guess cost for number in range(i, j)
 
-        for(int i = 2; i <=n; i++){
-            for(int j = i + 1; j <= n; j++){
+        for(int j = 2; j <= n; j++){
+            for(int i = j - 1; i > 0; i--){
 
                 int local_min = Integer.MAX_VALUE;
                 for(int guess = i + 1; guess < j; guess++){
-                    int cost = 0;
-
-                        cost = Math.max(dp[i][guess-1], dp[guess+1][j]) + guess;
+                    int cost = Math.max(dp[i][guess-1], dp[guess+1][j]) + guess;
 
                     if(cost < local_min)
                         local_min = cost;
@@ -27,11 +25,11 @@ class GuessNumberHigherorLowerII {
             }
         }
 
-        return dp[n][n];
+        return dp[1][n];
     }
 
 
-    // Method 1: recursion, exceeds time limit
+    // Method 2: recursion, exceeds time limit
     // helper(1, n)
     private int helper(int start, int end){
         if(start >= end)
@@ -51,5 +49,9 @@ class GuessNumberHigherorLowerII {
         return local_min;
     }
 
-
+    /*
+    public static void main(String[] args){
+        getMoneyAmount(2);
+    }
+    */
 }

@@ -1,6 +1,7 @@
 package Easy;
 
 public class RemoveDuplicatesfromSortedList {
+    /*
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null)
             return head;
@@ -16,4 +17,5 @@ public class RemoveDuplicatesfromSortedList {
         
         return head;
     }
+    */
 }
