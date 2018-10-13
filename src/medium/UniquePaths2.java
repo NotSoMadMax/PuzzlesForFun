@@ -4,16 +4,20 @@ public class UniquePaths2 {
     private static int uniquePathsWithObstacles(int[][] obstacleGrid) {
         if (obstacleGrid.length < 1 || obstacleGrid == null || obstacleGrid[0].length < 1 || obstacleGrid[0] == null || obstacleGrid[0][0] == 1)
         		return 0;
-        
+
+        // dp matrix
         int[][] memo = new int[obstacleGrid.length][obstacleGrid[0].length];
+
         memo[0][0] = 1;
+        // initial first col
         for (int i = 1; i < obstacleGrid.length; i++){
-        		if (obstacleGrid[i][0] == 1)
+        		if (obstacleGrid[i][0] == 1)    // is obstacle
         			memo[i][0] = 0;
         		else 
-				memo[i][0] = memo[i - 1][0];		
+				    memo[i][0] = memo[i - 1][0];
         }
-        
+
+        // initial first row
         for (int i = 1; i < obstacleGrid[0].length; i++){
         		if(obstacleGrid[0][i] == 1)
         			memo[0][i] = 0;
@@ -33,9 +37,4 @@ public class UniquePaths2 {
         return memo[obstacleGrid.length - 1][obstacleGrid[0].length - 1];        	
     }
     
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
