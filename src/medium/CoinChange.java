@@ -21,20 +21,5 @@ public class CoinChange {
         
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];       	
     }
-    
-    /*
-	    if (amount < 0) return - 1;
-	    if (dp[amount] != INT_MAX) return dp[amount];
-	    for (int i = 0; i < coins.size(); ++i) {
-	        int tmp = coinChangeDFS(coins, amount - coins[i], dp);
-	        if (tmp >= 0) dp[amount] = min(dp[amount], tmp + 1);
-	    }
-	    
-	    return dp[amount] == INT_MAX ? -1 : dp[amount];
-    */
-    static void main(String[] args){
-    		int[] coin = {1,2,5,10};
-    		System.out.println(coinChange(coin, 21));;
-    }
-    
+
 }
