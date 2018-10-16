@@ -14,13 +14,9 @@ public class CoinChangeII {
         dp[0] = 1;
 
         for(int i = 0; i < coins.length; i++){
-            System.out.println("Coin Value:" + coins[i]);
             for (int j = coins[i]; j <= amount; j++){
                 dp[j] = dp[j] + dp[j - coins[i]];
-
-                // System.out.print(j + ":" + dp[j] + ", ");
             }
-            System.out.print("\n");
         }
 
         return dp[amount];
