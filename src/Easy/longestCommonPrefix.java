@@ -2,6 +2,22 @@ package Easy;
 
 class Solution {
     private static String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length < 1)
+            return "";
+        if (strs.length == 1)
+            return strs[0];
+
+        for (int i = 0; i < strs[0].length(); i++) {   // for each character
+            for (int j = 0; j < strs.length - 1; j++) {   // for each string
+                if (i >= strs[j].length() || i >= strs[j + 1].length() || strs[j].charAt(i) != strs[j + 1].charAt(i))
+                    return strs[j].substring(0, i);
+            }
+        }
+        return strs[0];
+    }
+
+    /*
+    private static String longestCommonPrefix(String[] strs) {
         int len = strs.length;
     	if (len == 0)
             return "";
@@ -41,5 +57,5 @@ class Solution {
     public static void main(String args[]){
         String[] strs = {"aa", "ab"};
         System.out.println(longestCommonPrefix(strs));
-    }
+    }*/
 }
