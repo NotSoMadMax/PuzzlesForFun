@@ -44,7 +44,7 @@ public class longestPalindrome {
 				break;
 		}
 		if (count >= len/2 + 1) {
-            System.out.println("yes");
+            // System.out.println("yes");
             return s.substring(0, count);
         }
 			
