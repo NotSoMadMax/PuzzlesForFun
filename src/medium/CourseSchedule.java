@@ -58,8 +58,49 @@ public class CourseSchedule {
     }
 
 
-    // Method 2: BFS
+    // Method 2: BFS, 64.3%
     private boolean canFinish_bfs(int numCourses, int[][] prerequisites) {
-        return false;
+        if(prerequisites == null || prerequisites.length < 1)
+            return true;
+
+        int len = prerequisites.length;
+
+        // construct the graph
+        Map<Integer, List<Integer>> dependent = new HashMap<>();
+        int[] in_count = new int[numCourses];
+        for(int i = 0; i < len; i++){
+            if(dependent.containsKey(prerequisites[i][1]))
+                dependent.get(prerequisites[i][1]).add(prerequisites[i][0]);    // 1 -> 0
+            else {
+                List<Integer> depen_list = new ArrayList<>();
+                depen_list.add(prerequisites[i][0]);
+                dependent.put(prerequisites[i][1], depen_list);
+            }
+
+            in_count[prerequisites[i][0]]++; // count the number of "in" edge for each node
+        }
+
+        Queue<Integer> zero_in = new LinkedList<>();    // nodes that don't depend on any nodes
+        for(int i = 0; i < numCourses; i++){
+            if(in_count[i] == 0)
+                zero_in.add(i);
+        }
+
+        int visisted = 0;
+        while (!zero_in.isEmpty()){
+            int cur = zero_in.poll();
+
+            if(dependent.containsKey(cur)){
+                for(int n:dependent.get(cur)){
+                    in_count[n]--;
+                    if(in_count[n] == 0)
+                        zero_in.add(n);
+                }
+            }
+
+            visisted++;
+        }
+
+        return visisted == numCourses;
     }
 }
