@@ -1,14 +1,58 @@
 package medium;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 public class FourSum {
+
+	public List<List<Integer>> fourSum(int[] nums, int target) {
+		if(nums == null || nums.length < 1)
+			return Collections.emptyList();
+
+		Arrays.sort(nums);
+		int len = nums.length;
+		List<List<Integer>> res = new ArrayList<>();
+
+		for(int i = 0; i <= len - 4; i++) {
+			if (i != 0 && nums[i] == nums[i - 1])
+				continue;
+
+			for (int j = i + 1; j <= len - 3; j++) {
+				if (j != i + 1 && nums[j] == nums[j - 1])
+					continue;
+
+				int left = j + 1, right = len - 1;
+				int cur_target = target - nums[i] - nums[j];
+				while (left < right) {
+					if (nums[left] + nums[right] < cur_target)
+						left++;
+					else if (nums[left] + nums[right] > cur_target)
+						right--;
+					else {
+						List<Integer> ans = new ArrayList<>();
+						ans.add(nums[i]);
+						ans.add(nums[j]);
+						ans.add(nums[left]);
+						ans.add(nums[right]);
+						res.add(ans);
+
+						while (left < right && nums[left] == nums[left + 1])
+							left++;
+						while (left < right && nums[right] == nums[right - 1])
+							right--;
+						left++;
+						right--;
+					}
+				}
+			}
+		}
+
+		return res;
+	}
+
+	// naive and broken
+	/*
     private static List<List<Integer>> threeSum(int[] nums, int target) {
    	 	Arrays.sort(nums);       
         int len = nums.length;
@@ -81,6 +125,7 @@ public class FourSum {
     	System.out.println(fourSum(nums, 17));
     	return;
     }
+    */
 }
 
 
