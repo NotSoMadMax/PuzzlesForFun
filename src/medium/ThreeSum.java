@@ -1,11 +1,50 @@
 package medium;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 
 public class ThreeSum {
+	private List<List<Integer>> threeSum(int[] nums) {
+		if(nums == null || nums.length < 3)
+			return Collections.emptyList();
+
+		int len = nums.length;
+		Arrays.sort(nums);
+		List<List<Integer>> res = new ArrayList<>();
+		for(int i = 0; i <= len - 3; i++){
+			if(i != 0 && nums[i] == nums[i - 1])
+				continue;
+			if(nums[i] > 0)	// everything after this number will be positive
+				break;
+
+			int left = i + 1, right = len - 1, target = -nums[i];
+			while (left < right){
+				if(nums[left] + nums[right] < target)
+					left++;
+				else if(nums[left] + nums[right] > target)
+					right--;
+				else {
+					List<Integer> ans = new ArrayList<>();
+					ans.add(nums[i]);
+					ans.add(nums[left]);
+					ans.add(nums[right]);
+					res.add(ans);
+
+					while (left < right && nums[left] == nums[left+1])
+						left++;
+					while (left < right && nums[right] == nums[right - 1])
+						right--;
+					left++;
+					right--;
+				}
+			}
+		}
+
+		return res;
+	}
+
+
+	/* young and green......
     private static List<List<Integer>> Naive_threeSum(int[] nums) {
         Arrays.sort(nums);       
         int len = nums.length;
@@ -122,6 +161,7 @@ public class ThreeSum {
     	System.out.println(sum3);
     	return;
     }
+    */
 }
 
 
