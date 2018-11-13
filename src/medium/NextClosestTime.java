@@ -3,7 +3,9 @@ package medium;
 import java.util.*;
 
 public class NextClosestTime {
-    private String nextClosestTime(String time) {
+
+    // Faster than 100%
+    private static String nextClosestTime(String time) {
         if(time == null || time.isEmpty())
             return time;
 
@@ -28,10 +30,10 @@ public class NextClosestTime {
             while (digits[i] <= t[4] - '0')
                 i++;
 
-            t[4] = (char)digits[i];
+            t[4] = (char)(digits[i] + '0');
             return new String(t);
         }
-        t[4] = (char)(digits[0]);
+        t[4] = (char)(digits[0] + '0');
 
         // third digit
         if(digits[uni - 1] > t[3] - '0'){
@@ -39,11 +41,11 @@ public class NextClosestTime {
             while (digits[i] <= t[3] - '0')
                 i++;
             if(digits[i] <= 5){
-                t[3] = (char)digits[i];
+                t[3] = (char)(digits[i] + '0');
                 return new String(t);
             }
         }
-        t[3] = (char)(digits[0]);
+        t[3] = (char)(digits[0] + '0');
 
         // second digit
         int range = t[0]<'2'?9:3;
@@ -52,11 +54,11 @@ public class NextClosestTime {
             while (digits[i] <= t[1] - '0')
                 i++;
             if(digits[i] <= range){
-                t[1] = (char)digits[i];
+                t[1] = (char)(digits[i] + '0');
                 return new String(t);
             }
         }
-        t[1] = (char)(digits[0]);
+        t[1] = (char)(digits[0] + '0');
 
         // first digit
         if(digits[uni - 1] > t[0] - '0'){
@@ -64,12 +66,18 @@ public class NextClosestTime {
             while (digits[i] <= t[0] - '0')
                 i++;
             if(digits[i] <= 2){
-                t[0] = (char)digits[i];
+                t[0] = (char)(digits[i] + '0');
                 return new String(t);
             }
         }
-        t[0] = (char)(digits[0]);
+        t[0] = (char)(digits[0] + '0');
 
         return new String(t);
     }
+
+    public static void main(String[] args){
+        String t = "19:34";
+        System.out.println(nextClosestTime(t));
+    }
+
 }

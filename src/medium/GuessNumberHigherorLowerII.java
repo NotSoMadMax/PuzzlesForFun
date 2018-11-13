@@ -1,6 +1,7 @@
 package medium;
 
 class GuessNumberHigherorLowerII {
+
     private static int getMoneyAmount(int n) {
         if(n < 1)
             return 0;
@@ -49,9 +50,8 @@ class GuessNumberHigherorLowerII {
         return local_min;
     }
 
-    /*
     public static void main(String[] args){
         getMoneyAmount(2);
     }
-    */
+
 }
