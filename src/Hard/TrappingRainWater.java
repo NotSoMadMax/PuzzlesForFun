@@ -4,7 +4,6 @@ import java.util.*;
 
 public class TrappingRainWater {
 
-
     // Method 2: stack, 42%
     private int trap2(int[] height) {
         if(height == null || height.length < 1)
