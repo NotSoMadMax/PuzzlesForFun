@@ -27,7 +27,6 @@ public class EvaluateDivision {
             i++;
         }
 
-
         double[] res = new double[queries.length];
         i = 0;
         for(String[] q:queries)
