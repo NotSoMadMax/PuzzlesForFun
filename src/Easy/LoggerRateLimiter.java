@@ -6,7 +6,7 @@ import java.util.*;
 class logger1{
     private Map<String, Integer> memo;
 
-    public void logger1{
+    public void logger1() {
         memo = new Hashtable<>();
     }
 
@@ -37,7 +37,7 @@ class logger2{
     private Set<String> mssgs = new HashSet<>();
     private int start = 0;
 
-    public void logger2{
+    public void logger2() {
         for(int i = 0; i < 10; i++)
             memo[i] = new ArrayList<>();
     }
