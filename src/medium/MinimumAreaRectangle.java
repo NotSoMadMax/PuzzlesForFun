@@ -5,7 +5,7 @@ import java.util.*;
 public class MinimumAreaRectangle {
 	
 	// Method 1: column by column
-    public int minAreaRect1(int[][] points) {
+    private int minAreaRect1(int[][] points) {
         if(points == null || points.length < 1 || points[0] == null || points[0].length < 1)
         	return 0;
     	
@@ -37,7 +37,7 @@ public class MinimumAreaRectangle {
     }
     
     // Method 2: diagonal
-    public int minAreaRect2(int[][] points) {
+    private int minAreaRect2(int[][] points) {
         if(points == null || points.length < 1 || points[0] == null || points[0].length < 1)
         	return 0;
         
