@@ -26,7 +26,7 @@ class TopVotedCandidate {
     }
     
     
-    public int q(int t) {
+    private int q(int t) {
         int l = 0, h = times.length - 1;
     	int mid;
     	while(l <= h){
