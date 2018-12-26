@@ -1,7 +1,9 @@
 package medium;
 
 class InorderSuccessorinBST {
-    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+	
+	// if there's a node larger than p, there is a successor
+    private TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
         if(root == null || p == null)
         	return null;
         
