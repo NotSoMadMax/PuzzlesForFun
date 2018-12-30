@@ -2,50 +2,53 @@ package medium;
 
 import java.util.*;
 
-class UF{
-	int[] parent;
-	int[] rank;
-	int n;
-	
-	public UF(int size){
-		this.parent = new int[size];
-		this.rank = new int[size];
-		this.n = size;
-		
-		for(int i = 0; i < n; i++)
-			parent[i] = i;
-	}
-	
-	public int find(int a){
-		while(a != parent[a]){
-			parent[a] = parent[parent[a]];	// path compression
-			a = parent[a];
-		}
-		
-		return a;
-	}
-		
-	public void union(int a, int b){
-		int a_root = find(a);
-		int b_root = find(b);
-		
-		if(a_root == b_root)
-			return;
-		
-		if(rank[a_root] > rank[b_root])
-			parent[b_root] = a_root;
-		else if(rank[a_root] < rank[b_root])
-			parent[a_root] = b_root;
-		else{
-			parent[b_root] = a_root;
-			rank[a_root]++;
-		}
-		
-		n--;
-	}
-}
 
 class AccountsMerge {
+	
+	class UF{
+		int[] parent;
+		int[] rank;
+		int n;
+		
+		public UF(int size){
+			this.parent = new int[size];
+			this.rank = new int[size];
+			this.n = size;
+			
+			for(int i = 0; i < n; i++)
+				parent[i] = i;
+		}
+		
+		public int find(int a){
+			while(a != parent[a]){
+				parent[a] = parent[parent[a]];	// path compression
+				a = parent[a];
+			}
+			
+			return a;
+		}
+			
+		public void union(int a, int b){
+			int a_root = find(a);
+			int b_root = find(b);
+			
+			if(a_root == b_root)
+				return;
+			
+			if(rank[a_root] > rank[b_root])
+				parent[b_root] = a_root;
+			else if(rank[a_root] < rank[b_root])
+				parent[a_root] = b_root;
+			else{
+				parent[b_root] = a_root;
+				rank[a_root]++;
+			}
+			
+			n--;
+		}
+	}
+	
+	
     private List<List<String>> accountsMerge(List<List<String>> accounts) {
         if(accounts == null || accounts.isEmpty())
         	return Collections.emptyList();
