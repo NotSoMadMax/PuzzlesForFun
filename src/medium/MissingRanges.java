@@ -3,7 +3,7 @@ package medium;
 import java.util.*;
 
 class MissingRanges {
-    public List<String> findMissingRanges(int[] nums, int lower, int upper) {    
+    private List<String> findMissingRanges(int[] nums, int lower, int upper) {    
         int len = nums.length;
         List<String> res = new ArrayList<>();
         long expect = lower, cur = lower;
