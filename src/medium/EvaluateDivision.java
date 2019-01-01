@@ -10,11 +10,9 @@ public class EvaluateDivision {
 
         int i = 0;
         for(String[] e:equations)
-        {
-            if(!graph.containsKey(e[0]))
-                graph.put(e[0], new ArrayList<>());
-            if(!graph.containsKey(e[1]))
-                graph.put(e[1], new ArrayList<>());
+        {            
+            graph.putIfAbsent(e[0], new ArrayList<>());            
+            graph.putIfAbsent(e[1], new ArrayList<>());
 
             graph.get(e[0]).add(e[1]);
             equValues.put(e[0]+"/"+e[1], values[i]);
