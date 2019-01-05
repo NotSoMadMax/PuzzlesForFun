@@ -22,7 +22,7 @@ public class CourseSchedule {
                 dependent.put(prerequisites[i][1], depen_list);
             }
         }
-
+        
         int[] visited = new int[numCourses];
         for(int i = 0; i < numCourses; i++){
             if(visited[i] == 0){    // not visited yet
