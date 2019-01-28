@@ -38,9 +38,12 @@ class LRU_Cache {
             return -1;
 
         DListNode cur = cache.get(key);
+
+        // take out cur node from the list
         cur.next.prev = cur.prev;
         cur.prev.next = cur.next;
 
+        // move cur node to the tail
         move2tail(cur);
 
         return cur.val;
