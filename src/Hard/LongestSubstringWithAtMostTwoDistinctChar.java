@@ -23,8 +23,8 @@ public class LongestSubstringWithAtMostTwoDistinctChar {
         
         return Math.max(res, s.length() - left);
 	}
-	
-	
+
+
 	
 	// Method 1: Map, 10%
     private int lengthOfLongestSubstringTwoDistinct(String s) {

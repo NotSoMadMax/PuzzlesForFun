@@ -2,7 +2,6 @@ package medium;
 
 import java.util.*;
 
-
 class WordLadder {
     private static int ladderLength(String beginWord, String endWord, List<String> wordList) {
         if (wordList == null || wordList.isEmpty())
@@ -50,16 +49,62 @@ class WordLadder {
         return nb;
     }
 
-    /*
-    // change one letter and see if exist in wordList
-    private static LIst<STring> neighbors2(String word, List<String> wordList){
-        List<String> nb = new ArrayList<String>();
+    // Method 2: Change one letter and see if exist in wordList
+    private static int ladderLength2(String beginWord, String endWord, List<String> wordList) {
+        if(wordList == null || wordList.isEmpty())
+            return 0;
 
-        for (int i=0; i < word.length(); i++){
-            for (int j = 0; j < 26; j++){
+        Set<String> words = new HashSet<>();
+        for(String w:wordList)
+            words.add(w);
+        if(words.contains(beginWord))
+            words.remove(beginWord);
 
+        int level = 1;
+
+        Queue<String> q = new LinkedList<>();
+        q.add(beginWord);
+
+        while (!q.isEmpty()){
+
+            for(int k = q.size(); k > 0; k--){
+                String cur = q.poll();
+
+                // Find neighbors
+                for(int i = 0; i < cur.length(); i++)
+                {
+                    for(char c = 'a'; c <= 'z'; c++)
+                    {
+                        String nb = cur.substring(0, i) + c + cur.substring(i+1);
+                        if(words.contains(nb)){
+                            System.out.println(nb);
+                            if(nb.equals(endWord))
+                                return level + 1;
+
+                            q.add(nb);
+                            words.remove(nb);
+                        }
+                    }
+                }
             }
+
+            level++;
         }
+
+        return 0;
     }
-    */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
