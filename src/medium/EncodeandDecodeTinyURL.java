@@ -1,5 +1,6 @@
 package medium;
 
+import java.nio.channels.NetworkChannel;
 import java.util.*;
 
 class EncodeandDecodeTinyURL {
@@ -59,7 +60,40 @@ class EncodeandDecodeTinyURL {
             return m.get(shortUrl);
         }
     }
+    
+    // Method 3: Random char and digit
+    class EnDeCoder3{
+    	Map<String, String> urlToTiny = new HashMap<>();
+        Map<String, String> tinyToUrl = new HashMap<>();    // tiny -> url
+        String dic = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+        // Encodes a URL to a shortened URL.
+        public String encode(String longUrl) {
+        	if(urlToTiny.containsKey(longUrl))
+        		return urlToTiny.get(longUrl);
+        	
+        	String tiny = "";
+        	
+        	do {
+        		StringBuilder sBuilder = new StringBuilder();
+        		for(int i = 0; i < 6; i++){
+        			int r = (int) (Math.random() * dic.length());
+        			sBuilder.append(dic.charAt(r));
+        		}
+        		tiny = sBuilder.toString();
+        	} while(tinyToUrl.containsKey(tiny));
+        		
+        	urlToTiny.put(longUrl, tiny);
+        	tinyToUrl.put(tiny, longUrl);
+        	
+        	return tiny;
+        }
+
+        // Decodes a shortened URL to its original URL.
+        public String decode(String shortUrl) {
+            return tinyToUrl.get(shortUrl);
+        }
+    }
 }
 
 // Your Codec object will be instantiated and called as such:
