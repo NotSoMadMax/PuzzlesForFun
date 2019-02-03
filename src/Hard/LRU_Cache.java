@@ -21,7 +21,7 @@ class DListNode{
 class LRU_Cache {
     protected int cap;
     protected DListNode head;
-    protected DListNode tail;
+    protected DListNode tail;	// put most recent at the tail
     protected Map<Integer, DListNode> cache;
 
     public LRU_Cache(int capacity) {
@@ -66,7 +66,7 @@ class LRU_Cache {
         cache.put(key, cur);
     }
 
-    // move the recent used nodes to tail
+    // move the most recently-used nodes to tail
     public void move2tail(DListNode node){
         node.prev = tail.prev;
         tail.prev.next = node;

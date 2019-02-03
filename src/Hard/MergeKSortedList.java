@@ -30,7 +30,7 @@ public class MergeKSortedList {
         while (end > 0){
             begin = 0;
             while (begin < end){
-                lists[begin] = merge(lists[begin], lists[end]);
+                lists[begin] = mergeTwoLists(lists[begin], lists[end]);
                 begin++;
                 end--;
             }
@@ -39,50 +39,25 @@ public class MergeKSortedList {
         return lists[0];
     }
 
+	private ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    	if (l1 == null)
+    		return l2;
+    	
+    	if (l2 == null)
+    		return l1;
 
-    // merge two list
-    private static ListNode merge(ListNode h1, ListNode h2){
-        if(h1 == null && h2 == null)
-            return null;
-        if(h1 == null)
-            return h2;
-        if(h2 == null)
-            return h1;
-
-        ListNode cur1 = h1, cur2 = h2;
-        ListNode head;  // to return
-        if(cur1.val <= cur2.val){
-            head = new ListNode(cur1.val);
-            cur1 = cur1.next;
-        }else {
-            head = new ListNode(cur2.val);
-            cur2 = cur2.next;
-        }
-
-        ListNode cur = head;
-        while (cur1 != null && cur2 != null){
-            if(cur1.val <= cur2.val){
-                cur.next = cur1;
-                cur1 = cur1.next;
-            } else {
-                cur.next = cur2;
-                cur2 = cur2.next;
-            }
-
-            cur = cur.next;
-        }
-
-        if(cur1 == null)
-            cur.next = cur2;
-        else
-            cur.next = cur1;
-
-        return head;
-    }
+    	if (l1.val < l2.val){
+    		l1.next = mergeTwoLists(l1.next, l2);
+    		return l1;
+    	} else {
+    		l2.next = mergeTwoLists(l2.next, l1);
+    		return l2;
+    	}
+    }    
 
 
-    /* // priority queue, 82.33%
-    private ListNode mergeKLists(ListNode[] lists){
+    // Method 2: priority queue, 82.33%
+    private ListNode mergeKLists1(ListNode[] lists){
         if(lists == null || lists.length < 1)
             return null;
 
@@ -113,7 +88,7 @@ public class MergeKSortedList {
 
         return head;
     }
-    */
+    
 
     /* // insert all node to heap, exceed space limit
      private ListNode mergeKLists(ListNode[] lists) {

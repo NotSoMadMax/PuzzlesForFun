@@ -16,8 +16,7 @@ class MostCommonWord {
         // String[] words = paragraph.toLowerCase().split("\\s|!|\\?|'|,|;|\\.");
         String[] words = paragraph.toLowerCase().split("[ !?',;.]+"); // faster
         
-        Map<String, Integer> count = new HashMap<>();
-        // Set<String> ban = new HashSet<>(Arrays.asList(banned));
+        Map<String, Integer> count = new HashMap<>();        
         Set<String> ban = new HashSet<>();
         for(String w:banned)    // faster
             ban.add(w);

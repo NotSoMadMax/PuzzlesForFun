@@ -24,9 +24,9 @@ class CopyListwithRandomPointer {
     	while(old_cur != null){
     		if(old_cur.next != null)
     		{
-        		if(m.containsKey(old_cur.next))
+        		if(m.containsKey(old_cur.next))	// next node can be some nodes' random node, hence already in the map
         			new_cur.next = m.get(old_cur.next);
-        		else{
+        		else{	
         			RandomListNode temp = new RandomListNode(old_cur.next.label);
         			new_cur.next = temp;
         			m.put(old_cur.next, temp);
