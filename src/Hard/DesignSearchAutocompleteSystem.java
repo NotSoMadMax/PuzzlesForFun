@@ -1,7 +1,5 @@
 package Hard;
 
-import sun.text.normalizer.Trie;
-
 import java.util.*;
 
 // 229ms, 94%
@@ -21,7 +19,7 @@ class TrieNode{
 }
 
 class Count{
-    String key;
+    String key;	// sentence
     int freq;
 
     public Count(String key, int fre){

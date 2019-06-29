@@ -10,7 +10,7 @@ public class CoinChange {
         int[] dp = new int[amount + 1]; // number of coins needed to get i dollars
         dp[0] = 0;
         for(int i = 1; i < amount + 1; i++){
-            dp[i] = amount + 1;
+            dp[i] = Integer.MAX_VALUE;
         }
 
         for(int i = 1; i <= amount; i++){
@@ -20,7 +20,7 @@ public class CoinChange {
             }
         }
 
-        return dp[amount]==amount+1?-1:dp[amount];
+        return dp[amount]==Integer.MAX_VALUE?-1:dp[amount];
     }
 
 
