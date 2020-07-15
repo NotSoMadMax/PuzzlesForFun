@@ -85,8 +85,8 @@ public class longestPalindrome {
     	int start = 0, end = 0;
     	
     	for(int i = 0; i < len - 1; i++){
-    		int len1 = expand(s, i, i);
-    		int len2 = expand(s, i, i + 1);
+    		int len1 = expand(s, i, i);	// Odd length
+    		int len2 = expand(s, i, i + 1); // Even length
     		
     		len1 = Math.max(len1, len2);
     		
@@ -109,7 +109,54 @@ public class longestPalindrome {
     	
     	return end - start - 1;
     }
-    
+
+    // Method 4: Walk through all cases with memorization.
+	public String longestPalindrome4(String s) {
+		if(s == null || s.isEmpty()) {
+			return s;
+		}
+
+		int[][] records = new int[s.length()][s.length()];  // -1 for false, 0 for initial, 1 for true
+		String best = s.substring(0, 1);
+		for(int i = 0; i < s.length() - 1; i++) {
+			for(int j = i + 1; j <= s.length(); j++) {
+				if(best.length() >= j - i) {
+					continue;
+				}
+				if(isPalindrome(s, i, j - 1, records)) {
+					if(s.substring(i, j).length() > best.length()) {
+						best = s.substring(i, j);
+						if(best.length() == s.length()) {
+							return best;
+						}
+					}
+				}
+			}
+		}
+
+		return best;
+	}
+
+	// Inclusive interval [start, end]
+	private boolean isPalindrome(String s, int start, int end, int[][] records) {
+		if(records[start][end] != 0) {
+			return records[start][end] == 1;
+		}
+
+		int i = start;
+		int j = end;
+		while (i < j) {
+			if(s.charAt(i) != s.charAt(j)) {
+				records[start][end] = -1;
+				records[i][j] = -1;
+				return false;
+			}
+			i++;
+			j--;
+		}
+		records[start][end] = 1;
+		return true;
+	}
     
 	public static void main(String args[]){
 		String s = "aaaaaaaaaaabbbbb";					
