@@ -5,6 +5,11 @@
 Leetcode.iml
 leetcode.launch
 test.c
+out/
+
+.DS_Store
+*.iml
+.gitignore
 
 # Eclipse
 .metadata
