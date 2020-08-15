@@ -1,9 +1,6 @@
 package medium;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Triangle {
 
@@ -80,6 +77,24 @@ public class Triangle {
         return Math.min(left, right);
     }
     */
+
+
+    // 2020
+    public int minimumTotal2020(List<List<Integer>> triangle) {
+        if (triangle == null || triangle.isEmpty() || triangle.get(0) == null || triangle.get(0).isEmpty()) {
+            return 0;
+        }
+
+        List<Integer> mins = new ArrayList<>(triangle.get(triangle.size() - 1));
+
+        for (int row = triangle.size() - 2; row >= 0; row--) {
+            for (int i = 0; i < triangle.get(row).size(); i++) {
+                mins.set(i, Integer.min(mins.get(i), mins.get(i + 1)) + triangle.get(row).get(i));
+            }
+        }
+
+        return mins.get(0);
+    }
 }
 
 
