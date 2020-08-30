@@ -1,18 +1,19 @@
 package medium;
 
-class Node {
-    public int val;
-    public Node next;
-
-    public Node() {}
-
-    public Node(int _val,Node _next) {
-        val = _val;
-        next = _next;
-    }
-};
-
 class InsertintoaCyclicSortedList {
+
+    class Node {
+        public int val;
+        public Node next;
+
+        public Node() {}
+
+        public Node(int _val,Node _next) {
+            val = _val;
+            next = _next;
+        }
+    }
+
     private Node insert(Node head, int insertVal) {
         if(head == null){
         	head = new Node(insertVal, null);        	
