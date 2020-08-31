@@ -3,27 +3,26 @@ package Easy;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class TreeNode {
-     int val;
-     TreeNode left;
-     TreeNode right;
-     TreeNode(int x) { val = x; }
-}
-
 public class SymmetricTree {
 
-
-    private static boolean isSymmetric(TreeNode root) {
-        if(root == null)
-            return true;
-        TreeNode temp = root;
-
-        return recursive(root, temp);
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int x) { val = x; }
     }
 
 
+    private boolean isSymmetric(TreeNode root) {
+        if(root == null)
+            return true;
+
+        return recursive(root.left, root.right);
+    }
+
+    // Method 1
     // recursive
-    private static boolean recursive(TreeNode root1, TreeNode root2){
+    private boolean recursive(TreeNode root1, TreeNode root2){
         if(root1 == null && root2 == null)
             return true;
 
@@ -39,8 +38,9 @@ public class SymmetricTree {
             return false;
     }
 
-    // iterative
-    private static boolean iterative(TreeNode root1, TreeNode root2){
+    // Method 2
+    // iterative BFS
+    private boolean iterative(TreeNode root1, TreeNode root2){
         if(root1 == null && root2 == null)
             return true;
         
@@ -62,7 +62,8 @@ public class SymmetricTree {
         	
         	if(cur1.val != cur2.val)
         		return false;
-        	
+
+        	// Add in symmetric order
         	q1.add(cur1.left);
         	q1.add(cur1.right);
         	
