@@ -10,7 +10,7 @@ public class FloodFill {
         flow(image, floodColor, newColor, sr, sc);
         return image;
     }
-    
+
     private void flow(int[][] image, int floodColor, int newColor, int row, int col) {
 
         image[row][col] = newColor;
