@@ -37,5 +37,20 @@ public class JumpGame {
 
         return farthest >= nums.length - 1;
     }
+
+    // 2020
+    // DP
+    public boolean canJump20202(int[] nums) {
+        int[] dp =  new int[nums.length];   // the number of moves left when reached location i
+        dp[0] = 0;
+        for (int i = 1; i < nums.length; i++) {
+            dp[i] = Math.max(dp[i - 1], nums[i - 1]) - 1;
+            if (dp[i] < 0) {
+                return false;
+            }
+        }
+
+        return dp[nums.length - 1] >= 0;
+    }
 }
                  
