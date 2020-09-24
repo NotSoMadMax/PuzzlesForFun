@@ -1,6 +1,7 @@
 package medium;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -59,5 +60,27 @@ class LongestIncreasingSubsequence {
         }
 
         return seq.size();
+    }
+
+    // 2020
+    // DP
+    public int lengthOfLIS2020(int[] nums) {
+        if(nums == null || nums.length < 1) {
+            return 0;
+        }
+        int res = 1;
+        int[] dp = new int[nums.length];    // the LIS that ends at i
+        Arrays.fill(dp, 1);
+
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[j] < nums[i]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+            res = Math.max(res, dp[i]);
+        }
+
+        return res;
     }
 }
