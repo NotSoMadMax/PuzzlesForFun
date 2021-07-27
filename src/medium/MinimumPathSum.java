@@ -24,6 +24,47 @@ public class MinimumPathSum {
         
         return memo[grid.length - 1][grid[0].length - 1];
     }
+
+    // 2020
+    // 2D DP
+    private int minPathSum1(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        int[][] mins = new int[rows][cols];
+        mins[0][0] = grid[0][0];
+
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                if(i == 0 && j == 0)
+                    continue;
+                int left = j == 0 ? Integer.MAX_VALUE : mins[i][j - 1];
+                int top = i == 0 ? Integer.MAX_VALUE : mins[i - 1][j];
+                mins[i][j] = grid[i][j] + Math.min(left, top);
+            }
+        }
+
+        return mins[rows - 1][cols - 1];
+    }
+
+    // 2D DP
+    // Memory optimization
+    private int minPathSum2(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                if(i == 0 && j == 0)
+                    continue;
+                int left = j == 0 ? Integer.MAX_VALUE : grid[i][j - 1];
+                int top = i == 0 ? Integer.MAX_VALUE : grid[i - 1][j];
+                grid[i][j] += Math.min(left, top);
+            }
+        }
+
+        return grid[rows - 1][cols - 1];
+    }
 }
 
 

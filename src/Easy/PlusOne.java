@@ -31,7 +31,7 @@ public class PlusOne {
     }
 
     // 2020
-    public int[] plusOne(int[] digits) {
+    public int[] plusOne2020(int[] digits) {
         if(digits == null || digits.length == 0) {
             return digits;
         }
@@ -57,6 +57,35 @@ public class PlusOne {
                 newDigits[i] = digits[i - 1];
             }
             return newDigits;
+        } else {
+            return digits;
+        }
+    }
+
+    public int[] plusOne2021(int[] digits) {
+        if (digits == null || digits.length == 0) {
+            return new int[0];
+        }
+
+        boolean carry = false;
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if(digits[i] < 9) {
+                digits[i] += 1;
+                carry = false;
+                break;
+            } else {
+                digits[i] = 0;
+                carry = true;
+            }
+        }
+
+        if (carry) {
+            int[] results = new int[digits.length + 1];
+            results[0] = 1;
+            for(int i = 0; i < digits.length; i++) {
+                results[i + 1] = digits[i];
+            }
+            return results;
         } else {
             return digits;
         }

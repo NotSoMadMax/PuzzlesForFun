@@ -21,10 +21,21 @@ public class UniquePaths {
         	// loose precision when number is large
         return (int) Math.round(ans);	
     }
-    
-    public static void main(String[] args){
-    		
-    		System.out.println(uniquePaths(10,34));
-    		
+
+    // 2020
+    // DP
+    public int uniquePaths1(int m, int n) {
+        int[][] paths = new int[m][n];
+        paths[0][0] = 1;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(i == 0 && j == 0)
+                    continue;
+                int top = i == 0 ? 0 : paths[i - 1][j];
+                int left = j == 0 ? 0 : paths[i][j - 1];
+                paths[i][j] = top + left;
+            }
+        }
+        return paths[m - 1][n - 1];
     }
 }
