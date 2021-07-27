@@ -42,4 +42,27 @@ class Solution {
         }
         return min;
     }
+
+    public List<String> commonChars2021(String[] words) {
+        int[][] count = new int[words.length][26];
+
+        for(int i = 0; i < words.length; i++) {
+            for (char c : words[i].toCharArray()) {
+                count[i][c - 'a'] += 1;
+            }
+        }
+
+        List<String> response = new ArrayList<>();
+        for(int i = 0; i < 26; i++) {
+            int minApperance = Integer.MAX_VALUE;
+            for (int j = 0; j < words.length; j++) {
+                minApperance = Math.min(minApperance, count[j][i]);
+            }
+
+            for(int c = 0; c < minApperance; c++) {
+                response.add(Character.toString((char) 'a' + i));
+            }
+        }
+        return response;
+    }
 }
