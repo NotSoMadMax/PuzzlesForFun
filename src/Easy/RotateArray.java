@@ -1,5 +1,7 @@
 package Easy;
 
+import java.util.Arrays;
+
 class Solution {
     public void rotate(int[] nums, int k) {
         if (nums == null || nums.length < 1 || 
@@ -52,5 +54,30 @@ class Solution {
     		start++;
     		end--;
     	}
+    }
+
+    // 2021
+    public void rotate2021Copy(int[] nums, int k) {
+        int[] temp = Arrays.copyOf(nums, nums.length);
+        for (int i = 0; i < nums.length; i ++) {
+            nums[(i + k + nums.length) % nums.length] = temp[i];
+        }
+    }
+
+    public void rotate2021Move(int[] nums, int k) {
+        if(nums == null || nums.length < 2 || k < 1 || k == nums.length) return;
+
+        int start = 0, curIndex = 0, preValue = nums[0];
+        for(int i = 0; i < nums.length; i++) {
+            curIndex = (curIndex + k) % nums.length;
+            int temp = nums[curIndex];
+            nums[curIndex] = preValue;
+            preValue = temp;
+
+            if(curIndex == start) {
+                curIndex = ++start;
+                preValue = nums[curIndex];
+            }
+        }
     }
 }
