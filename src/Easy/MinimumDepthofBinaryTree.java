@@ -89,6 +89,61 @@ class MinimumDepthofBinaryTree {
 		}
     	return depth;
 	}
+
+
+
+	private int curMin = Integer.MAX_VALUE;
+
+	public int minDepth2021DFS(TreeNode root) {
+		if(root == null)
+			return 0;
+
+		search(root, 1);
+		return curMin;
+	}
+
+	private void search(final TreeNode root, final int curDepth) {
+		if(root == null)
+			return;
+
+		if(root.left == null && root.right == null) {
+			curMin = Math.min(curMin, curDepth);
+			return;
+		}
+
+		search(root.left, curDepth + 1);
+		search(root.right, curDepth + 1);
+	}
+
+	public int minDepth2021BFS(TreeNode root) {
+		if (root == null)
+			return 0;
+
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.add(root);
+		int curDepth = 1;
+
+		while(!queue.isEmpty()) {
+			int nOfNodes = queue.size();
+
+			for(int i = 0; i < nOfNodes; i++) {
+				TreeNode cur = queue.poll();
+				if(cur.left == null && cur.right == null)
+					return curDepth;
+
+				if(cur.left != null) {
+					queue.add(cur.left);
+				}
+
+				if(cur.right != null) {
+					queue.add(cur.right);
+				}
+			}
+
+			curDepth++;
+		}
+		return curDepth;
+	}
 }
 
 
