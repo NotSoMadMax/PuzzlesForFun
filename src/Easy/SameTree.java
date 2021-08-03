@@ -18,4 +18,20 @@ public class SameTree {
 
         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
+
+    public boolean isSameTree2021(TreeNode p, TreeNode q) {
+        if(p == null && q == null) {
+            return true;
+        }
+        if(p == null ^ q == null) {
+            return false;
+        }
+
+        if(p.val != q.val) {
+            return false;
+        }
+        else {
+            return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+        }
+    }
 }
